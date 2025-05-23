@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSudokuPuzzle } from "../hooks/useSudokuPuzzle";
 import { SudokuGrid } from "./SudokuGrid";
 
@@ -6,18 +7,20 @@ type SudokuBoardProps = {
 }
 
 export const SudokuBoard = ({ }: SudokuBoardProps) => {
-    useSudokuPuzzle();
+    const { sudokuState, isLoaded, sudokuSolution, loadSudoku } = useSudokuPuzzle();
 
-    // if (loading) return <p>Loading Sudoku...</p>;
-    // if (error) return <p>Failed to fetch puzzle.</p>;
-    // console.log(board)
+    useEffect(() => loadSudoku(), []); // Move this some place else
 
-    const grids = Array.from({ length: 9 }, (_, index) => index + 1);
+    console.log(sudokuState)
+    if (!isLoaded) return <p>Loading Sudoku...</p>;
+
+
+    const grids = sudokuSolution!;
 
     return (
         <div className="sudokuBoard">
-            {grids.map(() => (
-                <SudokuGrid cellValues={[]} />
+            {grids.map((grid) => (
+                <SudokuGrid cellValues={grid} />
             ))}
         </div>
     )

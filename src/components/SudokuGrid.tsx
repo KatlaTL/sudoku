@@ -6,13 +6,9 @@ type SudokuGridProps = {
 
 export const SudokuGrid = ({ cellValues }: SudokuGridProps) => {
 
-    
-
-    const cells = Array.from({ length: 9 }, (_, index) => index + 1);
-
     return (
         <div className="sudokuGrid">
-            {cells.map(value => (
+            {cellValues.map(value => (
                 <SudokuCell value={value} />
             ))}
         </div>

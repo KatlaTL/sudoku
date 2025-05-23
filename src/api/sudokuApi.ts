@@ -1,4 +1,3 @@
-import { cache } from "react";
 import { SudokuQueryResponse } from "../types/sudoku";
 import axiosClient from "./axiosClient";
 
